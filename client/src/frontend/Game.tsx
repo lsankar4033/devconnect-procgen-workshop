@@ -14,6 +14,10 @@ const enum LoadingStep {
   LOADED_PLUGIN_MANAGER,
 }
 
+function dist(a: WorldCoords, b: WorldCoords) {
+  return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+}
+
 export default function Game() {
   const [gameManager, setGameManager] = useState<GameManager | undefined>();
   // const [ethConnection, setEthConnection] = useState<EthConnection | undefined>();
@@ -21,7 +25,8 @@ export default function Game() {
   const [error, setError] = useState('no errors');
   const [tiles, setTiles] = useState<Tile[][]>([]);
 
-  const radiusTiles = [];
+  const lightRadius = 10;
+  const center = { x: 50, y: 50 };
 
   useEffect(() => {
     setStep(LoadingStep.LOADED_ETH_CONNECTION);
@@ -61,12 +66,25 @@ export default function Game() {
                       <GridRow key={i}>
                         {coordRow.map((tile, j) => {
                           if (j == 0) return null;
+
+                          const baseColor = tinycolor('#ff9915');
+
+                          let color = baseColor.clone();
+                          if (dist(center, { x: i, y: j }) > lightRadius) {
+                            color = baseColor.desaturate(100);
+                          } else {
+                            // TODO: simulate flicker/blocks falling behind
+                            const r = Math.random();
+                            if (r < 0.1) {
+                              color = baseColor.desaturate(r * 700);
+                            }
+                          }
+
                           return (
-                            // TODO: if it's in the light radius, .desaturate 100 it
                             <GridSquare
                               key={100 * i + j}
                               style={{
-                                backgroundColor: tinycolor('#ff9915').desaturate(i).toHexString(),
+                                backgroundColor: color.toHexString(),
                               }}
                               onContextMenu={(event) => onGridClick(event, { x: i, y: j })}
                             />

@@ -1,6 +1,7 @@
 import { TileType, WorldCoords, AltitudeType, TemperatureType } from 'common-types';
 
 // NOTE: sand dune color palette
+// TODO: make these max saturated versions of the base colors
 export const tileTypeToColor = {
   [TileType.UNKNOWN]: 'grey',
   [TileType.WATER]: '#9a8c7a',
