@@ -28,6 +28,12 @@ export default function Game() {
   const lightRadius = 10;
   const center = { x: 50, y: 50 };
 
+  console.log('#9a8c7a', tinycolor('#9a8c7a').saturate(100).toHexString());
+  console.log('#b6aea6', tinycolor('#b6aea6').saturate(100).toHexString());
+  console.log('#897869', tinycolor('#897869').saturate(100).toHexString());
+  console.log('#baa684', tinycolor('#baa684').saturate(100).toHexString());
+  console.log('#ab946b', tinycolor('#ab946b').saturate(100).toHexString());
+
   useEffect(() => {
     setStep(LoadingStep.LOADED_ETH_CONNECTION);
     GameManager.create().then((gm) => {
@@ -67,7 +73,7 @@ export default function Game() {
                         {coordRow.map((tile, j) => {
                           if (j == 0) return null;
 
-                          const baseColor = tinycolor('#ff9915');
+                          const baseColor = tinycolor(tileTypeToColor[tile.tileType]);
 
                           let color = baseColor.clone();
                           if (dist(center, { x: i, y: j }) > lightRadius) {
@@ -76,7 +82,7 @@ export default function Game() {
                             // TODO: simulate flicker/blocks falling behind
                             const r = Math.random();
                             if (r < 0.1) {
-                              color = baseColor.desaturate(r * 700);
+                              color = baseColor.desaturate(r * 400);
                             }
                           }
 

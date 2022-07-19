@@ -4,11 +4,11 @@ import { TileType, WorldCoords, AltitudeType, TemperatureType } from 'common-typ
 // TODO: make these max saturated versions of the base colors
 export const tileTypeToColor = {
   [TileType.UNKNOWN]: 'grey',
-  [TileType.WATER]: '#9a8c7a',
-  [TileType.SAND]: '#b6aea6',
-  [TileType.GRASS]: '#897869',
-  [TileType.SNOW]: '#baa684',
-  [TileType.STONE]: '#ab946b',
+  [TileType.WATER]: '#ffac17',
+  [TileType.SAND]: '#ffb83f',
+  [TileType.GRASS]: '#f27100',
+  [TileType.SNOW]: '#ffae5d',
+  [TileType.STONE]: '#ff9915',
 };
 
 export const seedToTileAttrs = (coords: WorldCoords, perlin: number): TileType => {
