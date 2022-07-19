@@ -21,6 +21,8 @@ export default function Game() {
   const [error, setError] = useState('no errors');
   const [tiles, setTiles] = useState<Tile[][]>([]);
 
+  const radiusTiles = [];
+
   useEffect(() => {
     setStep(LoadingStep.LOADED_ETH_CONNECTION);
     GameManager.create().then((gm) => {
@@ -60,12 +62,11 @@ export default function Game() {
                         {coordRow.map((tile, j) => {
                           if (j == 0) return null;
                           return (
+                            // TODO: if it's in the light radius, .desaturate 100 it
                             <GridSquare
                               key={100 * i + j}
                               style={{
-                                backgroundColor: tinycolor(
-                                  tileTypeToColor[tile.tileType]
-                                ).toHexString(),
+                                backgroundColor: tinycolor('#ff9915').desaturate(i).toHexString(),
                               }}
                               onContextMenu={(event) => onGridClick(event, { x: i, y: j })}
                             />
@@ -136,9 +137,7 @@ const FullScreen = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-image: url('/public/assets/clouds.svg');
-  background-repeat: repeat;
-  background-size: 20%;
+  background-color: white;
   height: 100%;
   user-select: none;
 `;

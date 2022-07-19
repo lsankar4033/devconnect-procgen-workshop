@@ -1,18 +1,13 @@
 import { TileType, WorldCoords, AltitudeType, TemperatureType } from 'common-types';
 
+// NOTE: sand dune color palette
 export const tileTypeToColor = {
   [TileType.UNKNOWN]: 'grey',
-  [TileType.WATER]: '#3C91E6',
-  [TileType.SAND]: '#EFDD6F',
-  [TileType.TREE]: '#0A8754', //
-  [TileType.STUMP]: '#0A8754', //
-  [TileType.CHEST]: '#53F4FF', //
-  [TileType.FARM]: '#0A8754',
-  [TileType.WINDMILL]: '#0A8754', //
-  [TileType.GRASS]: '#0A8754',
-  [TileType.SNOW]: '#FFFAFA',
-  [TileType.STONE]: '#918E85',
-  [TileType.ICE]: '#D6FFFA', //
+  [TileType.WATER]: '#9a8c7a',
+  [TileType.SAND]: '#b6aea6',
+  [TileType.GRASS]: '#897869',
+  [TileType.SNOW]: '#baa684',
+  [TileType.STONE]: '#ab946b',
 };
 
 export const seedToTileAttrs = (coords: WorldCoords, perlin: number): TileType => {
